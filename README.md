@@ -3,12 +3,14 @@ MVEL lang Plugin for ElasticSearch
 
 The MVEL language plugin allows to have [MVEL](http://mvel.codehaus.org/) as the language of scripts to execute.
 
+__NOTE: this plugin should only be used for future elasticsearch version that won't support MVEL by default__
+
 In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-mvel`.
 
     ----------------------------------------
-    | JavaScript Plugin | ElasticSearch    |
+    | MVEL Plugin       | ElasticSearch    |
     ----------------------------------------
-    | master            | 0.20             |
+    | master            | ?                |
     ----------------------------------------
 
 License
