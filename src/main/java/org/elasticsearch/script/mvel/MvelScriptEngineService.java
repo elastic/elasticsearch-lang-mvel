@@ -19,14 +19,13 @@
 
 package org.elasticsearch.script.mvel;
 
-import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.AtomicReaderContext;
 import org.apache.lucene.search.Scorer;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.component.AbstractComponent;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.math.UnboxedMathUtils;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.index.search.geo.GeoDistance;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.ScriptEngineService;
 import org.elasticsearch.script.SearchScript;
@@ -168,8 +167,8 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
         }
 
         @Override
-        public void setNextReader(IndexReader reader) {
-            lookup.setNextReader(reader);
+        public void setNextReader(AtomicReaderContext context) {
+            lookup.setNextReader(context);
         }
 
         @Override
