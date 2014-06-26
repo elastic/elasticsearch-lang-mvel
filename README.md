@@ -1,24 +1,150 @@
-MVEL lang Plugin for ElasticSearch
+MVEL lang Plugin for Elasticsearch
 ==================================
 
-The MVEL language plugin allows to have [MVEL](http://mvel.codehaus.org/) as the language of scripts to execute.
+The MVEL language plugin allows to have [`MVEL`](http://mvel.codehaus.org/) as the language of scripts to execute.
 
-__NOTE: this plugin should only be used for future elasticsearch version that won't support MVEL by default__
+In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-mvel/2.0.0`.
 
-In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-mvel`.
+* For master elasticsearch versions, look at [master branch](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/master).
 
-    ----------------------------------------
-    | MVEL Plugin       | ElasticSearch    |
-    ----------------------------------------
-    | master            | ?                |
-    ----------------------------------------
+|     Groovy Lang Plugin      |    elasticsearch    |  MVEL    | Release date |
+|-----------------------------|---------------------|----------|:------------:|
+| 2.0.0-SNAPSHOT              | master              |  2.2.0   |  XXXX-XX-XX  |
+
+Please read documentation relative to the version you are using:
+
+* [2.0.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/blob/master/README.md)
+
+Using mvel with function_score
+--------------------------------
+
+Let's say you want to use `function_score` API using `mvel`. Here is
+a way of doing it:
+
+```sh
+curl -XDELETE "http://localhost:9200/test"
+
+curl -XPUT "http://localhost:9200/test/doc/1" -d '{
+  "num": 1.0
+}'
+
+curl -XPUT "http://localhost:9200/test/doc/2?refresh" -d '{
+  "num": 2.0
+}'
+
+curl -XGET "http://localhost:9200/test/_search" -d'
+{
+  "query": {
+    "function_score": {
+      "script_score": {
+        "script": "Math.pow(doc[\"num\"].value, 2)",
+        "lang": "mvel"
+      }
+    }
+  }
+}'
+```
+
+gives
+
+```javascript
+{
+   // ...
+   "hits": {
+      "total": 2,
+      "max_score": 4,
+      "hits": [
+         {
+            // ...
+            "_score": 4
+         },
+         {
+            // ...
+            "_score": 1
+         }
+      ]
+   }
+}
+```
+
+Using mvel with script_fields
+-------------------------------
+
+```sh
+curl -XDELETE "http://localhost:9200/test"
+
+curl -XPUT "http://localhost:9200/test/doc/1?refresh" -d'
+{
+  "obj1": {
+   "test": "something"
+  },
+  "obj2": {
+    "arr2": [ "arr_value1", "arr_value2" ]
+  }
+}'
+
+curl -XGET "http://localhost:9200/test/_search" -d'
+{
+  "script_fields": {
+    "s_obj1": {
+      "script": "_source.obj1", "lang": "mvel"
+    },
+    "s_obj1_test": {
+      "script": "_source.obj1.test", "lang": "mvel"
+    },
+    "s_obj2": {
+      "script": "_source.obj2", "lang": "mvel"
+    },
+    "s_obj2_arr2": {
+      "script": "_source.obj2.arr2", "lang": "mvel"
+    }
+  }
+}'
+```
+
+gives
+
+```javascript
+{
+  // ...
+  "hits": [
+     {
+        // ...
+        "fields": {
+           "s_obj2_arr2": [
+              [
+                 "arr_value1",
+                 "arr_value2"
+              ]
+           ],
+           "s_obj1_test": [
+              "something"
+           ],
+           "s_obj2": [
+              {
+                 "arr2": [
+                    "arr_value1",
+                    "arr_value2"
+                 ]
+              }
+           ],
+           "s_obj1": [
+              {
+                 "test": "something"
+              }
+           ]
+        }
+     }
+  ]
+}
+```
 
 License
 -------
 
     This software is licensed under the Apache 2 license, quoted below.
 
-    Copyright 2009-2012 Shay Banon and ElasticSearch <http://www.elasticsearch.org>
+    Copyright 2009-2014 Elasticsearch <http://www.elasticsearch.org>
 
     Licensed under the Apache License, Version 2.0 (the "License"); you may not
     use this file except in compliance with the License. You may obtain a copy of

@@ -76,6 +76,11 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
     }
 
     @Override
+    public boolean sandboxed() {
+        return false;
+    }
+
+    @Override
     public Object compile(String script) {
         return MVEL.compileExpression(script, new ParserContext(parserConfiguration));
     }
