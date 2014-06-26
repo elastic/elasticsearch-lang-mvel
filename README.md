@@ -7,7 +7,7 @@ In order to install the plugin, simply run: `bin/plugin -install elasticsearch/e
 
 * For master elasticsearch versions, look at [master branch](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/master).
 
-|     Groovy Lang Plugin      |    elasticsearch    |  MVEL    | Release date |
+|      MVEL Lang Plugin       |    elasticsearch    |  MVEL    | Release date |
 |-----------------------------|---------------------|----------|:------------:|
 | 2.0.0-SNAPSHOT              | master              |  2.2.0   |  XXXX-XX-XX  |
 
