@@ -1,19 +1,32 @@
 MVEL lang Plugin for Elasticsearch
 ==================================
 
-The MVEL language plugin allows to have [`MVEL`](http://mvel.codehaus.org/) as the language of scripts to execute.
+The MVEL language plugin allows to have [`mvel`](http://mvel.codehaus.org/) as the language of scripts to execute.
 
-In order to install the plugin, simply run: `bin/plugin -install elasticsearch/elasticsearch-lang-mvel/2.0.0`.
+In order to install the plugin, simply run: 
 
-* For master elasticsearch versions, look at [master branch](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/master).
+```sh
+bin/plugin -install elasticsearch/elasticsearch-lang-mvel/2.4.0
+```
 
-|      MVEL Lang Plugin       |    elasticsearch    |  MVEL    | Release date |
-|-----------------------------|---------------------|----------|:------------:|
-| 2.0.0-SNAPSHOT              | master              |  2.2.0   |  XXXX-XX-XX  |
+You need to install a version matching your Elasticsearch version:
 
-Please read documentation relative to the version you are using:
+| elasticsearch |   MVEL Lang Plugin    |   Docs     |  
+|---------------|-----------------------|------------|
+| master        |  Build from source    | See below  |
+| es-1.x        |  Build from source    | [2.5.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.x/#version-250-snapshot-for-elasticsearch-1x)  |
+| es-1.4        |  Build from source    | [2.4.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.4/#version-240-snapshot-for-elasticsearch-14)  |
 
-* [2.0.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/blob/master/README.md)
+To build a `SNAPSHOT` version, you need to build it with Maven:
+
+```bash
+mvn clean install
+plugin --install lang-mvel \
+       --url file:target/releases/elasticsearch-lang-mvel-X.X.X-SNAPSHOT.zip
+```
+
+User Guide
+----------
 
 Using mvel with function_score
 --------------------------------
