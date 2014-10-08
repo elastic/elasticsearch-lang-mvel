@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-lang-mvel</artifactId>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.5.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Elasticsearch MVEL language plugin</name>
     <description>The MVEL language plugin allows to have mvel as the language of scripts to execute.</description>
@@ -31,7 +31,7 @@
     </parent>
 
     <properties>
-        <elasticsearch.version>1.4.0.Beta1</elasticsearch.version>
+        <elasticsearch.version>1.5.0-SNAPSHOT</elasticsearch.version>
         <mvel.version>2.2.0.Final</mvel.version>
         <lucene.version>4.10.1</lucene.version>
         <tests.jvms>1</tests.jvms>
