@@ -3,27 +3,10 @@ MVEL lang Plugin for Elasticsearch
 
 The MVEL language plugin allows to have [`mvel`](http://mvel.codehaus.org/) as the language of scripts to execute.
 
-In order to install the plugin, simply run: 
+## Version 2.4.0-SNAPSHOT for Elasticsearch: 1.4
 
-```sh
-bin/plugin -install elasticsearch/elasticsearch-lang-mvel/2.4.0
-```
-
-You need to install a version matching your Elasticsearch version:
-
-| elasticsearch |   MVEL Lang Plugin    |   Docs     |  
-|---------------|-----------------------|------------|
-| master        |  Build from source    | See below  |
-| es-1.x        |  Build from source    | [2.5.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.x/#version-250-snapshot-for-elasticsearch-1x)  |
-| es-1.4        |  Build from source    | [2.4.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.4/#version-240-snapshot-for-elasticsearch-14)  |
-
-To build a `SNAPSHOT` version, you need to build it with Maven:
-
-```bash
-mvn clean install
-plugin --install lang-mvel \
-       --url file:target/releases/elasticsearch-lang-mvel-X.X.X-SNAPSHOT.zip
-```
+If you are looking for another version documentation, please refer to the 
+[compatibility matrix](http://github.com/elasticsearch/elasticsearch-lang-mvel#mvel-lang-plugin-for-elasticsearch).
 
 User Guide
 ----------
