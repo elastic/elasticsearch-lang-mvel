@@ -36,6 +36,7 @@ import org.mvel2.ParserContext;
 import org.mvel2.compiler.ExecutableStatement;
 import org.mvel2.integration.impl.MapVariableResolverFactory;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
@@ -105,10 +106,6 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
         return value;
     }
 
-    public void clearCache() {
-        parserConfiguration.flushCaches();
-    }
-
     @Override
     public void close() {
         //To change body of implemented methods use File | Settings | File Templates.
@@ -153,6 +150,8 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
 
         private final MapVariableResolverFactory resolver;
 
+        private Scorer scorer;
+
         public MvelSearchScript(Object script, SearchLookup lookup, Map<String, Object> vars) {
             this.script = (ExecutableStatement) script;
             this.lookup = lookup;
@@ -168,7 +167,7 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
 
         @Override
         public void setScorer(Scorer scorer) {
-            lookup.setScorer(scorer);
+            this.scorer = scorer;
         }
 
         @Override
@@ -179,11 +178,6 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
         @Override
         public void setNextDocId(int doc) {
             lookup.setNextDocId(doc);
-        }
-
-        @Override
-        public void setNextScore(float score) {
-            resolver.createVariable("_score", score);
         }
 
         @Override
@@ -198,6 +192,13 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
 
         @Override
         public Object run() {
+            try {
+                if (scorer != null) {
+                    resolver.createVariable("_score", scorer.score());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Could not get score", e);
+            }
             return script.getValue(null, resolver);
         }
 
