@@ -26,6 +26,7 @@ import org.elasticsearch.common.component.AbstractComponent;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.math.UnboxedMathUtils;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.script.CompiledScript;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.ScriptEngineService;
 import org.elasticsearch.script.SearchScript;
@@ -109,6 +110,11 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
     @Override
     public void close() {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void scriptRemoved(@Nullable CompiledScript compiledScript) {
+
     }
 
     public static class MvelExecutableScript implements ExecutableScript {
