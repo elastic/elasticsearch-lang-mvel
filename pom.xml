@@ -33,13 +33,25 @@
     <properties>
         <elasticsearch.version>2.0.0-SNAPSHOT</elasticsearch.version>
         <mvel.version>2.2.0.Final</mvel.version>
-        <lucene.version>4.10.2</lucene.version>
+        <lucene.version>5.0.0</lucene.version>
+        <lucene.maven.version>5.0.0-snapshot-1636426</lucene.maven.version>
         <tests.jvms>1</tests.jvms>
         <tests.shuffle>true</tests.shuffle>
         <tests.output>onerror</tests.output>
         <tests.client.ratio></tests.client.ratio>
         <es.logger.level>INFO</es.logger.level>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>sonatype</id>
+            <url>http://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>Lucene snapshots</id>
+            <url>https://download.elasticsearch.org/lucenesnapshots/maven/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -59,7 +71,7 @@
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-test-framework</artifactId>
-            <version>${lucene.version}</version>
+            <version>${lucene.maven.version}</version>
             <scope>test</scope>
         </dependency>
 
