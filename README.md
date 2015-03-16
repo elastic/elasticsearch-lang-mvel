@@ -3,7 +3,7 @@ MVEL lang Plugin for Elasticsearch
 
 The MVEL language plugin allows to have [`mvel`](http://mvel.codehaus.org/) as the language of scripts to execute.
 
-## Version 1.5.0-SNAPSHOT for Elasticsearch: 1.x
+## Version 1.5.0-SNAPSHOT for Elasticsearch: 1.5
 
 If you are looking for another version documentation, please refer to the 
 [compatibility matrix](http://github.com/elasticsearch/elasticsearch-lang-mvel#mvel-lang-plugin-for-elasticsearch).
