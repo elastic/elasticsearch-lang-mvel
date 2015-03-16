@@ -14,7 +14,8 @@ You need to install a version matching your Elasticsearch version:
 | elasticsearch |   MVEL Lang Plugin    |   Docs     |  
 |---------------|-----------------------|------------|
 | master        |  Build from source    | See below  |
-| es-1.x        |  Build from source    | [1.5.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.x/#version-150-snapshot-for-elasticsearch-1x)  |
+| es-1.x        |  Build from source    | [1.6.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.x/#version-160-snapshot-for-elasticsearch-1x)  |
+| es-1.5        |  Build from source    | [1.5.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.5/#version-150-snapshot-for-elasticsearch-15)  |
 |    es-1.4              |     1.4.1         | [1.4.1](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/v1.4.1/#version-141-for-elasticsearch-14)                  |
 
 To build a `SNAPSHOT` version, you need to build it with Maven:
