@@ -6,7 +6,7 @@
 
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-lang-mvel</artifactId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.5.0</version>
     <packaging>jar</packaging>
     <name>Elasticsearch MVEL language plugin</name>
     <description>The MVEL language plugin allows to have mvel as the language of scripts to execute.</description>
