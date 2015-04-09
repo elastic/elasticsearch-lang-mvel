@@ -28,8 +28,10 @@ import org.elasticsearch.common.math.UnboxedMathUtils;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.script.CompiledScript;
 import org.elasticsearch.script.ExecutableScript;
+import org.elasticsearch.script.LeafSearchScript;
 import org.elasticsearch.script.ScriptEngineService;
 import org.elasticsearch.script.SearchScript;
+import org.elasticsearch.search.lookup.LeafSearchLookup;
 import org.elasticsearch.search.lookup.SearchLookup;
 import org.mvel2.MVEL;
 import org.mvel2.ParserConfiguration;
@@ -93,8 +95,15 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
     }
 
     @Override
-    public SearchScript search(Object compiledScript, SearchLookup lookup, @Nullable Map<String, Object> vars) {
-        return new MvelSearchScript(compiledScript, lookup, vars);
+    public SearchScript search(final Object compiledScript, final SearchLookup lookup, @Nullable final Map<String, Object> vars) {
+        return new SearchScript() {
+
+            @Override
+            public LeafSearchScript getLeafSearchScript(LeafReaderContext context) throws IOException {
+                final LeafSearchLookup leafLookup = lookup.getLeafSearchLookup(context);
+                return new MvelSearchScript(compiledScript, leafLookup, vars);
+            }
+        };
     }
 
     @Override
@@ -148,17 +157,17 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
         }
     }
 
-    public static class MvelSearchScript implements SearchScript {
+    public static class MvelSearchScript implements LeafSearchScript {
 
         private final ExecutableStatement script;
 
-        private final SearchLookup lookup;
+        private final LeafSearchLookup lookup;
 
         private final MapVariableResolverFactory resolver;
 
         private Scorer scorer;
 
-        public MvelSearchScript(Object script, SearchLookup lookup, Map<String, Object> vars) {
+        public MvelSearchScript(Object script, LeafSearchLookup lookup, Map<String, Object> vars) {
             this.script = (ExecutableStatement) script;
             this.lookup = lookup;
             if (vars != null) {
@@ -177,13 +186,8 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
         }
 
         @Override
-        public void setNextReader(LeafReaderContext context) {
-            lookup.setNextReader(context);
-        }
-
-        @Override
-        public void setNextDocId(int doc) {
-            lookup.setNextDocId(doc);
+        public void setDocument(int doc) {
+            lookup.setDocument(doc);
         }
 
         @Override
@@ -192,8 +196,8 @@ public class MvelScriptEngineService extends AbstractComponent implements Script
         }
 
         @Override
-        public void setNextSource(Map<String, Object> source) {
-            lookup.source().setNextSource(source);
+        public void setSource(Map<String, Object> source) {
+            lookup.source().setSource(source);
         }
 
         @Override
