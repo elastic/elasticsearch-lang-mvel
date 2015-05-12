@@ -33,6 +33,7 @@
 
     <properties>
         <mvel.version>2.2.0.Final</mvel.version>
+        <tests.security.manager>true</tests.security.manager>
     </properties>
 
     <dependencies>
