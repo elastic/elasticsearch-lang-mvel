@@ -25,6 +25,7 @@ import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.unit.TimeValue;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static java.lang.String.format;
@@ -40,11 +41,11 @@ public class FibBench {
     }
 
     private static void recursiveFib(int n) {
-        exec(0, 1, format("recursive_fib(%s)", n), format("def fib(n) { if (n == 0 || n == 1) { n } else { fib(n-1) + fib(n-2) } }; return fib(%s);", n));
+        exec(0, 1, format(Locale.ROOT, "recursive_fib(%s)", n), format(Locale.ROOT, "def fib(n) { if (n == 0 || n == 1) { n } else { fib(n-1) + fib(n-2) } }; return fib(%s);", n));
     }
 
     private static void dynamicFib(int n) {
-        exec(100, 200, format("dynamic_fib(%s)", n), format("values = new int[%s]; for (int i = 0; i < %s; i++) { if (i < 2) { values[i] = i; } else { values[i] = values[i-1] + values[i-2]; }} values[%s-1];", n, n, n));
+        exec(100, 200, format(Locale.ROOT, "dynamic_fib(%s)", n), format(Locale.ROOT, "values = new int[%s]; for (int i = 0; i < %s; i++) { if (i < 2) { values[i] = i; } else { values[i] = values[i-1] + values[i-2]; }} values[%s-1];", n, n, n));
     }
 
     private static void exec(int warmCount, int avgOver, String name, String script) {
@@ -65,7 +66,7 @@ public class FibBench {
             se.execute(compiled, vars);
             avg.inc(stopWatch.stop().lastTaskTime().millis());
         }
-        System.out.println(format("[%s] => %s", name, TimeValue.timeValueMillis((long) avg.mean())));
+        System.out.println(format(Locale.ROOT, "[%s] => %s", name, TimeValue.timeValueMillis((long) avg.mean())));
     }
 
 }
