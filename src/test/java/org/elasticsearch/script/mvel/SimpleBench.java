@@ -21,7 +21,7 @@ package org.elasticsearch.script.mvel;
 
 import org.elasticsearch.common.StopWatch;
 import org.elasticsearch.common.metrics.MeanMetric;
-import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.script.ExecutableScript;
 
@@ -53,7 +53,7 @@ public class SimpleBench {
     }
 
     public static void testIteration(long[] results) {
-        MvelScriptEngineService se = new MvelScriptEngineService(ImmutableSettings.Builder.EMPTY_SETTINGS);
+        MvelScriptEngineService se = new MvelScriptEngineService(Settings.Builder.EMPTY_SETTINGS);
         Object compiled = se.compile("x + y");
 
         Map<String, Object> vars = new HashMap<String, Object>();

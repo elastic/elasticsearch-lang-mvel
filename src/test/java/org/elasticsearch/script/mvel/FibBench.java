@@ -21,7 +21,7 @@ package org.elasticsearch.script.mvel;
 
 import org.elasticsearch.common.StopWatch;
 import org.elasticsearch.common.metrics.MeanMetric;
-import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
 
 import java.util.HashMap;
@@ -53,7 +53,7 @@ public class FibBench {
     }
 
     private static void exec(int warmCount, int avgOver, String name, String script, Map<String, Object> vars) {
-        MvelScriptEngineService se = new MvelScriptEngineService(ImmutableSettings.Builder.EMPTY_SETTINGS);
+        MvelScriptEngineService se = new MvelScriptEngineService(Settings.Builder.EMPTY_SETTINGS);
         for (int i = 0; i < warmCount; i++) {
             Object compiled = se.compile(new String(script));
             se.execute(compiled, vars);

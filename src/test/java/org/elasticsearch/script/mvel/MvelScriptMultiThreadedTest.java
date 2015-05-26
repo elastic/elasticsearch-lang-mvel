@@ -19,7 +19,7 @@
 
 package org.elasticsearch.script.mvel;
 
-import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.test.ElasticsearchTestCase;
 import org.junit.Test;
@@ -40,7 +40,7 @@ public class MvelScriptMultiThreadedTest extends ElasticsearchTestCase {
 
     @Test
     public void testExecutableNoRuntimeParams() throws Exception {
-        final MvelScriptEngineService se = new MvelScriptEngineService(ImmutableSettings.Builder.EMPTY_SETTINGS);
+        final MvelScriptEngineService se = new MvelScriptEngineService(Settings.Builder.EMPTY_SETTINGS);
         final Object compiled = se.compile("x + y");
         final AtomicBoolean failed = new AtomicBoolean();
 
@@ -84,7 +84,7 @@ public class MvelScriptMultiThreadedTest extends ElasticsearchTestCase {
 
     @Test
     public void testExecutableWithRuntimeParams() throws Exception {
-        final MvelScriptEngineService se = new MvelScriptEngineService(ImmutableSettings.Builder.EMPTY_SETTINGS);
+        final MvelScriptEngineService se = new MvelScriptEngineService(Settings.Builder.EMPTY_SETTINGS);
         final Object compiled = se.compile("x + y");
         final AtomicBoolean failed = new AtomicBoolean();
 
@@ -127,7 +127,7 @@ public class MvelScriptMultiThreadedTest extends ElasticsearchTestCase {
 
     @Test
     public void testExecute() throws Exception {
-        final MvelScriptEngineService se = new MvelScriptEngineService(ImmutableSettings.Builder.EMPTY_SETTINGS);
+        final MvelScriptEngineService se = new MvelScriptEngineService(Settings.Builder.EMPTY_SETTINGS);
         final Object compiled = se.compile("x + y");
         final AtomicBoolean failed = new AtomicBoolean();
 
