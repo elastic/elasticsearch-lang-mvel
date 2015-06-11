@@ -6,7 +6,7 @@ The MVEL language plugin allows to have [`mvel`](http://mvel.codehaus.org/) as t
 In order to install the plugin, simply run: 
 
 ```sh
-bin/plugin install elasticsearch/elasticsearch-lang-mvel/1.5.0
+bin/plugin install elasticsearch/elasticsearch-lang-mvel/1.6.0
 ```
 
 You need to install a version matching your Elasticsearch version:
@@ -15,7 +15,7 @@ You need to install a version matching your Elasticsearch version:
 |---------------|-----------------------|------------|
 | master        |  Build from source    | See below  |
 | es-1.x        |  Build from source    | [1.7.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.x/#version-170-snapshot-for-elasticsearch-1x)  |
-| es-1.6        |  Build from source    | [1.6.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.6/#version-160-snapshot-for-elasticsearch-16)  |
+|    es-1.6              |     1.6.0         | [1.6.0](https://github.com/elastic/elasticsearch-lang-mvel/tree/v1.6.0/#version-160-for-elasticsearch-16)                  |
 |    es-1.5              |     1.5.0         | [1.5.0](https://github.com/elastic/elasticsearch-lang-mvel/tree/v1.5.0/#version-150-for-elasticsearch-15)                  |
 |    es-1.4              |     1.4.1         | [1.4.1](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/v1.4.1/#version-141-for-elasticsearch-14)                  |
 
