@@ -15,7 +15,7 @@ You need to install a version matching your Elasticsearch version:
 
 | elasticsearch |   MVEL Lang Plugin    |   Docs     |  
 |---------------|-----------------------|------------|
-| master        |  Build from source    | See below  |
+| master        |  Not available    |      |
 | es-1.x        |  Build from source    | [1.7.0-SNAPSHOT](https://github.com/elasticsearch/elasticsearch-lang-mvel/tree/es-1.x/#version-170-snapshot-for-elasticsearch-1x)  |
 |    es-1.6              |     1.6.0         | [1.6.0](https://github.com/elastic/elasticsearch-lang-mvel/tree/v1.6.0/#version-160-for-elasticsearch-16)                  |
 |    es-1.5              |     1.5.0         | [1.5.0](https://github.com/elastic/elasticsearch-lang-mvel/tree/v1.5.0/#version-150-for-elasticsearch-15)                  |
