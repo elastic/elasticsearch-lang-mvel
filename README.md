@@ -1,5 +1,7 @@
-MVEL lang Plugin for Elasticsearch
+MVEL lang Plugin for Elasticsearch (DEPRECATED)
 ==================================
+
+> MVEL does not work correctly with Java8. This plugin will only be maintained until Elasticsearch 2.0.0.
 
 The MVEL language plugin allows to have [`mvel`](http://mvel.codehaus.org/) as the language of scripts to execute.
 
