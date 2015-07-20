@@ -32,7 +32,7 @@
     </parent>
 
     <properties>
-        <mvel.version>2.2.0.Final</mvel.version>
+        <mvel.version>2.2.5.Final</mvel.version>
     </properties>
 
     <dependencies>
